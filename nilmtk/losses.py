@@ -41,3 +41,10 @@ def nep(app_gt,app_pred):
     denominator = np.sum(app_gt)
 
     return numerator/denominator
+
+
+def sae(app_gt, app_pred):
+    #normalised signal aggregate error (SAE)
+    numerator = np.abs(np.sum(app_pred) - np.sum(app_gt))
+    denominator = np.sum(app_gt)
+    return numerator/denominator
