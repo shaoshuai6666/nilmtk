@@ -1,4 +1,4 @@
-from sklearn.metrics import mean_squared_error, mean_absolute_error, f1_score, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error, f1_score, r2_score,accuracy_score,precision_score,recall_score,matthews_corrcoef
 import numpy as np
 
 def mae(app_gt,app_pred):
@@ -8,7 +8,7 @@ def rmse(app_gt, app_pred):
     return mean_squared_error(app_gt,app_pred)**(.5)
 
 def f1score(app_gt, app_pred):
-    threshold = 10
+    threshold = 100
     gt_temp = np.array(app_gt)
     gt_temp = np.where(gt_temp<threshold,0,1)
     pred_temp = np.array(app_pred)
@@ -48,3 +48,37 @@ def sae(app_gt, app_pred):
     numerator = np.abs(np.sum(app_pred) - np.sum(app_gt))
     denominator = np.sum(app_gt)
     return numerator/denominator
+
+
+def accuracy(app_gt, app_pred):
+    threshold = 100
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+    return accuracy_score(gt_temp, pred_temp)
+
+def precision(app_gt, app_pred):
+    threshold = 100
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+    return precision_score(gt_temp, pred_temp)
+
+def recall(app_gt, app_pred):
+    threshold = 100
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+    return recall_score(gt_temp, pred_temp)
+
+def mcc(app_gt, app_pred):
+    #马修斯相关系数（MCC）
+    threshold = 100
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+    return matthews_corrcoef(gt_temp, pred_temp)

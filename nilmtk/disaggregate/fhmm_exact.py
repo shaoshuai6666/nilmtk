@@ -231,7 +231,7 @@ class FHMMExact(Disaggregator):
 
             # Fit
             learnt_model[appliance].fit(X)
-            print("Learnt model for : "+appliance)
+            print("Learnt model for : "+str(appliance))
 
             # Check to see if there are any more chunks.
             # TODO handle multiple chunks per appliance.
